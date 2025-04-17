@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kezdőlap - Vaszilij EDC</title>
     <link rel="stylesheet" href="stlye.css">
-    <script src="scripte.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
@@ -16,20 +15,24 @@
 
     <header>
         <nav>
-            <a href="#resz1">Rólam</a>
-            <a href="#resz2">Ha Kést szeretnél</a>
-            <a href="#resz3">Blog</a>
-            <a href="">Kezdőlap</a>
-            <a href=""><img src="user.png" alt="" class="login"></a>
-        
+            <a href="index.html">Kezdőlap</a>
+            <a href="blog.html">Blog</a>
+            <a href="shop.html">Ha Kést szeretnél</a>
+            <div class="dropdown">
+                <button class="dropbtn"><img src="user.png" alt="" class="login"></button>
+                <div class="dropdown-content">
+                    <a href="login.html">Bejelnkezés</a>
+                    <a href="register.html">Regisztráció</a>
+                    <a href="#">Kijelenkezés</a>
+                </div>
+            </div>
         </nav>
 
     </header>
 
     <div class="parallax">
         <div class="overlay-szoveg">
-            <h1>Üdvözöllek a weboldalon!</h1>
-
+            <h1>Kések, pengék és multi toolok egy helyen</h1>
         </div>
     </div>
 
@@ -52,7 +55,7 @@
         <a href="">Cookie-Kezelés</a>
         <a href=""> Adatkezelés</a>
     </footer>
-    
+<script src="scripte.js"></script>
 </body>
 
 </html>

@@ -12,14 +12,15 @@ html {
 header {
     position: sticky;
     top: 0;
-    background-color:#3E3527;
+    background-color: #3E3527;
     color: white;
     padding: 1rem;
     z-index: 1000;
     text-align: center;
 }
 
-nav a, a {
+nav a,
+a {
     margin: 0 1rem;
     color: white;
     text-decoration: none;
@@ -51,9 +52,11 @@ nav a, a {
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    background-color: rgba(255, 255, 255, 0.1); /* finom világos overlay */
-    backdrop-filter: blur(10px); /* ez mossa el a háttért */
-    -webkit-backdrop-filter: blur(10px); /* Safari támogatás */
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+
 }
 
 
@@ -72,12 +75,90 @@ footer {
     text-align: center;
     padding: 1rem;
 }
-.login{
+
+.login {
     max-width: 30px;
     max-height: 30px;
     float: right;
-    padding:  0px;
+    padding: 0px;
 }
-h1,h2{
+
+h1,h2 {
     font-weight: bold;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    background-color: #3E3527;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropbtn {
+    background-color: #3E3527;;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+a:hover{
+    text-shadow: 5px 5px 3px black;
+}
+section{
+    text-align: center;
+    background: #1F1F1F;
+    border-radius: 16px;
+    padding: 15px;
+}
+section input,button{
+    border-radius: 12px;
+    padding: 8px;
+    
+}
+section button{
+    background-color: #5A513C;
+    color: white;
+    padding: 10px;
+    font-size: medium;
+}
+.shop {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.shop > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    color:  black;
+}
+
+.shop img {
+    width: 100%;
+    height: 200px;  /* Fixálva van a magasság */
+    object-fit: contain;  /* Az arányok megtartása */
+    border-radius: 8px;
 }
