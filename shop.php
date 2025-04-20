@@ -1,3 +1,6 @@
+<?php
+require_once 'blog/includes/auth.php';
+?>
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -5,29 +8,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kezdőlap - Vaszilij EDC</title>
-    <link rel="stylesheet" href="stlye.css">
+    <link rel="stylesheet" href="./stlye.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
     <header>
         <nav>
-            <a href="index.html">Kezdőlap</a>
-            <a href="blog.html">Blog</a>
-            <a href="shop.html">Ha Kést szeretnél</a>
+            <a href="./index.php">Kezdőlap</a>
+            <a href="./blog/index.php">Blog</a>
+            <a href="./shop.php">Ha Kést szeretnél</a>
             <div class="dropdown">
                 <button class="dropbtn"><img src="user.png" alt="" class="login"></button>
                 <div class="dropdown-content">
-                    <a href="login.html">Bejelnkezés</a>
-                    <a href="register.html">Regisztráció</a>
-                    <button id="kijelenkezes" name="kijelenkezes">kijelenkezes</button>
+                    <?php if (!isLoggedIn()): ?>
+                        <a href="login.php">Bejelentkezés</a>
+                        <a href="register.php">Regisztráció</a>
+                    <?php else: ?>
+                        <form method="POST" action="logout.php">
+                            <button type="submit" id="kijelenkezes" name="kijelenkezes">Kijelentkezés</button>
+                        </form>
+                    <?php endif; ?>
                 </div>
             </div>
         </nav>
-
+    </header>
     </header>
 
     <div class="parallax">
