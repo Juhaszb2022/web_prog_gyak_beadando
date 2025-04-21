@@ -8,7 +8,13 @@ $stmt = $db->prepare("SELECT * FROM posts WHERE id = ?");
 $stmt->execute([$id]);
 $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$comments = $db->prepare("SELECT * FROM comments WHERE post_id = ? ORDER BY created_at DESC");
+$comments = $db->prepare("
+    SELECT comments.comment, comments.created_at, users.username
+    FROM comments
+    INNER JOIN users ON comments.user_id = users.id
+    WHERE comments.post_id = ?
+    ORDER BY comments.created_at DESC
+");
 $comments->execute([$id]);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isLoggedIn()) {
@@ -27,9 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isLoggedIn()) {
         <h3>Hozzászólások</h3>
         <?php while ($c = $comments->fetch()): ?>
             <div class="comment">
+                <p><strong><?= htmlspecialchars($c['username']) ?></strong>: <em><?= $c['created_at'] ?></em></p>
                 <p><?= nl2br(htmlspecialchars($c['comment'])) ?></p>
             </div>
         <?php endwhile; ?>
+
 
         <?php if (isLoggedIn()): ?>
             <form method="POST">
