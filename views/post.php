@@ -32,35 +32,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isLoggedIn()) {
 }
 ?>
 
-<div class="content">
+<div class="container my-5">
     <main class="blog-post-full">
-        <h2><?= htmlspecialchars($post['title']) ?></h2>
-        <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
+        <h2 class="mb-4"><?= htmlspecialchars($post['title']) ?></h2>
 
         <?php if (!empty($post['image'])): ?>
-            <div class="post-image">
-                <img src="<?= htmlspecialchars($post['image']) ?>" alt="Bejegyzés képe" style="max-width: 400px;">
+            <div class="mb-4 text-center">
+                <img src="<?= htmlspecialchars($post['image']) ?>" alt="Bejegyzés képe" class="img-fluid rounded shadow-sm" style="max-width: 100%; height: auto; max-height: 500px;">
             </div>
         <?php endif; ?>
 
-        <a href="index.php?page=blog"><button>← Vissza a bloghoz</button></a>
+        <div class="mb-5">
+            <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
+        </div>
 
-        <section class="comments">
-            <h3>Hozzászólások</h3>
+        <a href="index.php?page=blog" class="btn btn-secondary mb-5">← Vissza a bloghoz</a>
+
+        <section class="comments mt-5">
+            <h3 class="mb-4">Hozzászólások</h3>
+
             <?php while ($c = $comments->fetch()): ?>
-                <div class="comment">
-                    <p><strong><?= htmlspecialchars($c['username']) ?></strong> – <em><?= $c['created_at'] ?></em></p>
+                <div class="mb-4 p-3 border rounded bg-light">
+                    <p class="mb-1">
+                        <strong><?= htmlspecialchars($c['username']) ?></strong>
+                        <span class="text-muted small"> – <?= $c['created_at'] ?></span>
+                    </p>
                     <p><?= nl2br(htmlspecialchars($c['comment'])) ?></p>
                 </div>
             <?php endwhile; ?>
 
             <?php if (isLoggedIn()): ?>
-                <form method="POST">
-                    <textarea name="comment" required></textarea>
-                    <button type="submit">Hozzászólás beküldése</button>
+                <form method="POST" class="mt-4">
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">Új hozzászólás</label>
+                        <textarea name="comment" id="comment" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Hozzászólás beküldése</button>
                 </form>
             <?php else: ?>
-                <p><a href="index.php?page=login">Jelentkezz be</a> a hozzászóláshoz!</p>
+                <p><a href="index.php?page=login" class="btn btn-outline-primary">Jelentkezz be</a> a hozzászóláshoz!</p>
             <?php endif; ?>
         </section>
     </main>

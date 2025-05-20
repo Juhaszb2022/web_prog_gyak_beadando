@@ -27,41 +27,52 @@ if ($isAdmin && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'], 
 }
 ?>
 
-<div class="content">
-    <main class="blog-list">
-        <h1>Blogbejegyzések</h1>
+<div class="container my-5">
+    <main>
+        <h1 class="mb-4">Blogbejegyzések</h1>
 
-        <?php foreach ($posts as $post): ?>
-            <article class="blog-post">
-                <h2><?= htmlspecialchars($post['title']) ?></h2>
-                <p class="post-date"><?= date('Y.m.d', strtotime($post['created_at'])) ?></p>
-
-                <?php if (!empty($post['image'])): ?>
-                    <div class="post-image">
-                        <img src="<?= htmlspecialchars($post['image']) ?>" alt="Bejegyzés képe" style="max-width: 300px;">
-                    </div>
-                <?php endif; ?>
-
-                <p><?= nl2br(htmlspecialchars(mb_substr($post['content'], 0, 300))) ?>...</p>
-                <a href="index.php?page=post&id=<?= $post['id'] ?>" class="read-more">Tovább olvasom</a>
-            </article>
-        <?php endforeach; ?>
+        <div class="row g-4">
+            <?php foreach ($posts as $post): ?>
+                <div class="col-md-6 col-lg-4">
+                    <article class="card h-100 shadow-sm">
+                        <?php if (!empty($post['image'])): ?>
+                            <img src="<?= htmlspecialchars($post['image']) ?>" class="card-img-top img-fluid" alt="Bejegyzés képe">
+                        <?php endif; ?>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><?= htmlspecialchars($post['title']) ?></h5>
+                            <p class="text-muted small mb-2"><?= date('Y.m.d', strtotime($post['created_at'])) ?></p>
+                            <p class="card-text"><?= nl2br(htmlspecialchars(mb_substr($post['content'], 0, 300))) ?>...</p>
+                            <a href="index.php?page=post&id=<?= $post['id'] ?>" class="btn btn-primary mt-auto">Tovább olvasom</a>
+                        </div>
+                    </article>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
         <?php if ($isAdmin): ?>
-            <hr>
-            <h3>Új bejegyzés hozzáadása</h3>
-            <form method="POST" enctype="multipart/form-data">
-                <label>Cím:</label><br>
-                <input type="text" name="title" required><br><br>
+            <hr class="my-5">
+            <h3 class="mb-3">Új bejegyzés hozzáadása</h3>
+            <form method="POST" enctype="multipart/form-data" class="row g-3">
+                <div class="col-12">
+                    <label for="title" class="form-label">Cím</label>
+                    <input type="text" name="title" id="title" class="form-control" required>
+                </div>
 
-                <label>Tartalom:</label><br>
-                <textarea name="content" required></textarea><br><br>
+                <div class="col-12">
+                    <label for="content" class="form-label">Tartalom</label>
+                    <textarea name="content" id="content" class="form-control" rows="5" required></textarea>
+                </div>
 
-                <label>Kép (opcionális):</label><br>
-                <input type="file" name="image"><br><br>
+                <div class="col-12">
+                    <label for="image" class="form-label">Kép (opcionális)</label>
+                    <input type="file" name="image" id="image" class="form-control">
+                </div>
 
-                <button type="submit">Bejegyzés mentése</button>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success">Bejegyzés mentése</button>
+                </div>
             </form>
         <?php endif; ?>
     </main>
 </div>
+

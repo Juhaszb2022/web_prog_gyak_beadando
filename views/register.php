@@ -1,6 +1,6 @@
 <?php
-require_once './includes/db.php';
-require_once './includes/auth.php';
+require_once __DIR__ .'/../includes/db.php';
+require_once __DIR__ .'/../includes/auth.php';
 
 $error = '';
 
@@ -26,33 +26,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $insert->execute([$username, $email, $hashedPassword]);
 
-            header("Location: index.php?page=home");
+            header("Location: index.php?page=login");
             exit;
         }
     }
 }
 ?>
 
-<main>
-    <section>
-        <h1>Regisztráció</h1>
-        <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
-        <form action="views/register.php" method="POST">
-            <label for="username">Felhasználónév:</label><br>
-            <input type="text" name="username" id="username" required><br><br>
+<main class="container mt-5">
+    <section class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <h1 class="text-center mb-4">Regisztráció</h1>
 
-            <label for="email">Email cím:</label><br>
-            <input type="email" name="email" id="email" required><br><br>
+            <?php if (!empty($error)): ?>
+                <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+            <?php endif; ?>
 
-            <label for="password">Jelszó:</label><br>
-            <input type="password" name="password" id="password" required><br><br>
+            <form action="views/register.php" method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Felhasználónév:</label>
+                    <input type="text" name="username" id="username" class="form-control" required>
+                </div>
 
-            <label for="confirm_password">Jelszó újra:</label><br>
-            <input type="password" name="confirm_password" id="confirm_password" required><br><br>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email cím:</label>
+                    <input type="email" name="email" id="email" class="form-control" required>
+                </div>
 
-            <button type="submit">Regisztráció</button>
-        </form>
-        <p>Már van fiókod? <a href="index.php?page=login">Jelentkezz be!</a></p>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Jelszó:</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirm_password" class="form-label">Jelszó újra:</label>
+                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">Regisztráció</button>
+            </form>
+
+            <p class="text-center mt-3">
+                Már van fiókod? <a href="index.php?page=login">Jelentkezz be!</a>
+            </p>
+        </div>
     </section>
 </main>
 

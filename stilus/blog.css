@@ -1,12 +1,11 @@
 .blog-post {
-    background: white;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 8px;
+    border: black 5px solid;
 }
 
 .blog-post-full {
-    background: white;
     padding: 20px;
     border-radius: 8px;
 }
@@ -102,5 +101,5 @@ button:hover {
     color: #999;
 }
 .blog-post-full, .blog-post{
-    background-color: #0D0D0D;
+    background-color: #646464;
 }

@@ -65,7 +65,7 @@ CREATE TABLE `posts` (
 
 INSERT INTO `posts` (`id`, `title`, `content`, `created_at`, `author_id`, `image`) VALUES
 (1, 'test', 'test szöveg remélem jó lesz ez a csoda dolog', '2025-04-20 11:16:15', 2, NULL),
-(2, 'Test2', 'test szöveg hogy meg nézem hogyan néznek ki egymás mellet több bejegyzés ', '2025-04-20 11:31:59', 2, 'uploads/kép_2025-04-20_133155671.png'),
+(2, 'Test2', 'test szöveg hogy meg nézem hogyan néznek ki egymás mellet több bejegyzés ', '2025-04-20 11:31:59', 2, 'uploads/image.png'),
 (3, 'Test3', '3. testz csak a vicc kedvért\r\nDe jó a habos sütemeny amikor a vaddisznó elrepül', '2025-04-21 14:14:16', 2, NULL);
 
 -- --------------------------------------------------------
