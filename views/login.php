@@ -1,7 +1,6 @@
 <?php
-session_start();
-require_once 'blog/includes/db.php';
-require_once 'blog/includes/auth.php';
+require_once './includes/db.php';
+require_once './includes/auth.php';
 
 $error = '';
 
@@ -16,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['is_admin'] = $user['is_admin'];
-        header("Location: index.php");
+        header("Location: index.php?page=home");
         exit;
     } else {
         $error = "Hibás email vagy jelszó.";
@@ -28,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <section>
         <h1>Bejelentkezés</h1>
         <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
-        <form action="login.php" method="POST">
+        <form action="views/login.php" method="POST">
             <label for="email">Email cím:</label><br>
             <input type="email" name="email" id="email" required><br><br>
 
@@ -37,6 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <button type="submit">Bejelentkezés</button>
         </form>
-        <p>Még nincs fiókod? <a href="register.php">Regisztrálj itt!</a></p>
+        <p>Még nincs fiókod? <a href="index.php?page=register">Regisztrálj itt!</a></p>
     </section>
 </main>

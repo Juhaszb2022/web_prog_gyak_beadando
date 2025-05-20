@@ -1,7 +1,6 @@
 <?php
-session_start();
-require_once 'blog/includes/db.php';
-require_once 'blog/includes/auth.php';
+require_once './includes/db.php';
+require_once './includes/auth.php';
 
 $error = '';
 
@@ -27,11 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $insert->execute([$username, $email, $hashedPassword]);
 
-            // Bejelentkezés regisztráció után
-            $_SESSION['user_id'] = $db->lastInsertId();
-            $_SESSION['is_admin'] = 0;
-
-            header("Location: index.php");
+            header("Location: index.php?page=home");
             exit;
         }
     }
@@ -42,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <section>
         <h1>Regisztráció</h1>
         <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
-        <form action="register.php" method="POST">
+        <form action="views/register.php" method="POST">
             <label for="username">Felhasználónév:</label><br>
             <input type="text" name="username" id="username" required><br><br>
 
@@ -57,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <button type="submit">Regisztráció</button>
         </form>
-        <p>Már van fiókod? <a href="login.php">Jelentkezz be!</a></p>
+        <p>Már van fiókod? <a href="index.php?page=login">Jelentkezz be!</a></p>
     </section>
 </main>
 

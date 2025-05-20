@@ -1,67 +1,67 @@
 <?php
-require_once './includes/db.php';
-require_once './includes/auth.php';  
+require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
 
 $posts = $db->query("SELECT * FROM posts ORDER BY created_at DESC")->fetchAll(PDO::FETCH_ASSOC);
 
+$isAdmin = isAdmin();
 
-$isAdmin = isset($_SESSION['user_id']) && isAdmin($_SESSION['user_id']);  
-
-
+// új poszt mentése
 if ($isAdmin && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'], $_POST['content'])) {
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-
+    $title = trim($_POST['title']);
+    $content = trim($_POST['content']);
 
     $image = null;
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $imageName = basename($_FILES['image']['name']);
+    if (!empty($_FILES['image']['name']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $imageName = uniqid() . '_' . basename($_FILES['image']['name']);
+        $uploadDir = __DIR__ . '/../uploads/';
         $imagePath = 'uploads/' . $imageName;
-        move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
+        move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $imageName);
         $image = $imagePath;
     }
 
     $stmt = $db->prepare("INSERT INTO posts (title, content, created_at, author_id, image) VALUES (?, ?, NOW(), ?, ?)");
     $stmt->execute([$title, $content, $_SESSION['user_id'], $image]);
-    header("Location: /.views/blog.php");
+    header("Location: index.php?page=blog");
     exit;
 }
 ?>
 
-<main class="blog-list">
-    <?php foreach ($posts as $post): ?>
-        <article class="blog-post">
-            <h2 class="post-title"><?= htmlspecialchars($post['title']) ?></h2>
-            <p class="post-date"><?= date('Y.m.d', strtotime($post['created_at'])) ?></p>
-            <div class="post-image">
-                <?php if ($post['image']): ?>
-                    <img src="<?= htmlspecialchars($post['image']) ?>" alt="Bejegyzés képe">
+<div class="content">
+    <main class="blog-list">
+        <h1>Blogbejegyzések</h1>
+
+        <?php foreach ($posts as $post): ?>
+            <article class="blog-post">
+                <h2><?= htmlspecialchars($post['title']) ?></h2>
+                <p class="post-date"><?= date('Y.m.d', strtotime($post['created_at'])) ?></p>
+
+                <?php if (!empty($post['image'])): ?>
+                    <div class="post-image">
+                        <img src="<?= htmlspecialchars($post['image']) ?>" alt="Bejegyzés képe" style="max-width: 300px;">
+                    </div>
                 <?php endif; ?>
-            </div>
-            <p class="post-content"><?= nl2br(htmlspecialchars(substr($post['content'], 0, 300))) ?>...</p>
-            <a href="./views/post.php?id=<?= $post['id'] ?>" class="read-more">Tovább olvasom</a>
-        </article>
-    <?php endforeach; ?>
 
-    <?php if ($isAdmin): ?>
+                <p><?= nl2br(htmlspecialchars(mb_substr($post['content'], 0, 300))) ?>...</p>
+                <a href="index.php?page=post&id=<?= $post['id'] ?>" class="read-more">Tovább olvasom</a>
+            </article>
+        <?php endforeach; ?>
 
-        <button onclick="document.getElementById('create-post-form').style.display='block'">Új bejegyzés hozzáadása</button>
-
-
-        <div id="create-post-form" style="display:none;">
-            <h3>Új bejegyzés</h3>
-            <form action="index.php" method="POST" enctype="multipart/form-data">
-                <label for="title">Cím:</label>
+        <?php if ($isAdmin): ?>
+            <hr>
+            <h3>Új bejegyzés hozzáadása</h3>
+            <form method="POST" enctype="multipart/form-data">
+                <label>Cím:</label><br>
                 <input type="text" name="title" required><br><br>
 
-                <label for="content">Tartalom:</label>
+                <label>Tartalom:</label><br>
                 <textarea name="content" required></textarea><br><br>
 
-                <label for="image">Kép feltöltése (nem kötelező):</label>
+                <label>Kép (opcionális):</label><br>
                 <input type="file" name="image"><br><br>
 
-                <button type="submit">Bejegyzés közzététele</button>
+                <button type="submit">Bejegyzés mentése</button>
             </form>
-        </div>
-    <?php endif; ?>
-</main>
+        <?php endif; ?>
+    </main>
+</div>

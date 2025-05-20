@@ -14,7 +14,7 @@ require_once __DIR__ . '/../includes/nav.php';
         $page = $_GET['page'] ?? 'home';
     ?>
             <link rel="stylesheet" href="stilus/main.css">
-    <?php if ($page === 'blog'): ?>
+    <?php if ($page === 'blog'|| $page ==='report'||$page ==='post'): ?>
         <link rel="stylesheet" href="stilus/blog.css">
     <?php elseif ($page === 'login' || $page === 'register'): ?>
         <link rel="stylesheet" href="stilus/rl.css">
@@ -59,6 +59,11 @@ require_once __DIR__ . '/../includes/nav.php';
                 Nem vagy bejelentkezve
             <?php endif; ?>
         </span>
+        <?php if (isAdmin()): ?>
+    <a href="index.php?page=admin_reports">
+        <button>Admin hibák</button>
+    </a>
+<?php endif; ?>
     </nav>
 
 

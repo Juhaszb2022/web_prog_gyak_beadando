@@ -17,5 +17,11 @@
             <p>Ezen a blogon főképp késekről olvashatsz, mert hozzám ezek az eszközök állnak legközelebb, de szó esik néha másról is. Multiszerszámokról, táskákról, egyéb kiegészítőkről. És nem csak bemutatókat készítek: ahogy már írtam, sokféle aspektusa érdekel ennek a világnak.</p>
                 
             <p>Az every day carry tehát sok minden lehet. Életmód, filozófia, hobbi, vagy akár egy gyűjtőszenvedély alapja. Mindegy, hogy téged melyik része érdekel, remélem, találsz itt értékes olvasnivalót.</p>
+            <iframe width="640" height="360" src="https://www.youtube.com/shorts/xdTMeuoXFDU" 
+        title="YouTube videólejátszó" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+        <video src="img/Metal pipe falling  - Sound effect (LOUD-EARRAPE).mp4"></video>
+</iframe>
         </main>
         </div>

@@ -8,7 +8,7 @@ session_start();
 $page = $_GET['page'] ?? 'home';
 
 // Elérhető oldalak
-$allowed = ['home', 'blog', 'shop', 'login', 'register'];
+$allowed = ['home', 'blog', 'shop', 'login', 'register','Impresszum'];
 
 if (!in_array($page, $allowed)) {
     $page = 'home';
