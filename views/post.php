@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isLoggedIn()) {
             <h3 class="mb-4">Hozzászólások</h3>
 
             <?php while ($c = $comments->fetch()): ?>
-                <div class="mb-4 p-3 border rounded bg-light">
+                <div class="mb-4 p-3 border rounded bg-light comment">
                     <p class="mb-1">
                         <strong><?= htmlspecialchars($c['username']) ?></strong>
                         <span class="text-muted small"> – <?= $c['created_at'] ?></span>
