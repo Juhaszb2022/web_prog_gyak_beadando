@@ -1,0 +1,141 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    background-color: #0D0D0D;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    background-color: #3E3527;
+    color: white;
+    padding: 1rem;
+    z-index: 1000;
+    text-align: center;
+}
+
+nav a,
+a {
+    margin: 0 1rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 15px;
+    margin: 5px;
+}
+
+.parallax {
+    position: relative;
+    background-image: url(headerimg.jpg);
+    height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.overlay-szoveg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-size: 2rem;
+    text-align: center;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+
+}
+footer {
+    background-color: #3E3527;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+
+.login {
+    max-width: 30px;
+    max-height: 30px;
+    float: right;
+    padding: 0px;
+}
+
+h1,h2 {
+    font-weight: bold;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    background-color: #3E3527;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropbtn {
+    background-color: #3E3527;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+a:hover{
+    text-shadow: 5px 5px 3px black;
+}
+#kijelenkezes{
+    background-color: #3E3527;
+    border-radius: 0;
+    border:  0px;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.content{
+    text-align: center;
+    max-width: 100%;
+
+}
+main{
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: left;
+}
+.content img{
+    float: right;
+    max-width: 20%;
+    max-height: 20%;
+    padding: 5px;
+}
+

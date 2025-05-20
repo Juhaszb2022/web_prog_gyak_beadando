@@ -1,7 +1,6 @@
 <?php
 require_once './includes/db.php';
 require_once './includes/auth.php';  
-require_once './templates/header.php';
 
 $posts = $db->query("SELECT * FROM posts ORDER BY created_at DESC")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -24,7 +23,7 @@ if ($isAdmin && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'], 
 
     $stmt = $db->prepare("INSERT INTO posts (title, content, created_at, author_id, image) VALUES (?, ?, NOW(), ?, ?)");
     $stmt->execute([$title, $content, $_SESSION['user_id'], $image]);
-    header("Location: index.php");
+    header("Location: /.views/blog.php");
     exit;
 }
 ?>
@@ -40,7 +39,7 @@ if ($isAdmin && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'], 
                 <?php endif; ?>
             </div>
             <p class="post-content"><?= nl2br(htmlspecialchars(substr($post['content'], 0, 300))) ?>...</p>
-            <a href="post.php?id=<?= $post['id'] ?>" class="read-more">Tovább olvasom</a>
+            <a href="./views/post.php?id=<?= $post['id'] ?>" class="read-more">Tovább olvasom</a>
         </article>
     <?php endforeach; ?>
 
@@ -66,5 +65,3 @@ if ($isAdmin && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'], 
         </div>
     <?php endif; ?>
 </main>
-
-<?php require_once './templates/footer.php'; ?>

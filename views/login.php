@@ -23,27 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bejelentkezés - Vaszilij EDC</title>
-    <link rel="stylesheet" href="./stlye.css">
-</head>
-<body>
-<header>
-    <nav>
-        <a href="/web_prog_gyak_beadando/index.php">Kezdőlap</a>
-        <a href="/web_prog_gyak_beadando/blog/index.php">Blog</a>
-        <a href="/web_prog_gyak_beadando/shop.php">Ha Kést szeretnél</a>
-    </nav>
-</header>
-<div class="parallax">
-    <div class="overlay-szoveg">
-        <h1>Köszöntelek újra a weboldalon!</h1>
-    </div>
-</div>
+
 <main>
     <section>
         <h1>Bejelentkezés</h1>
@@ -60,11 +40,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p>Még nincs fiókod? <a href="register.php">Regisztrálj itt!</a></p>
     </section>
 </main>
-<footer>
-    <a href="">Impresszum</a>
-    <a href="">Jogi nyilatkozat</a>
-    <a href="">Cookie-Kezelés</a>
-    <a href="">Adatkezelés</a>
-</footer>
-</body>
-</html>
